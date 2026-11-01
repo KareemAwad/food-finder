@@ -15,8 +15,16 @@ export class HealthService {
       await this.prisma.$queryRaw`SELECT 1`;
       return { status: "ok", database: "ok", time };
     } catch (error: unknown) {
-      this.logger.error("Database check failed", error instanceof Error ? error.stack : undefined);
+      this.logger.error(`Database check failed: ${describeError(error)}`);
       return { status: "error", database: "error", time };
     }
   }
+}
+
+// Prisma's message is blank for connection failures, so include its code and the driver's details.
+// Prisma puts these in `meta`. They hold error codes and hostnames, not the connection string.
+function describeError(error: unknown): string {
+  if (!(error instanceof Error)) return String(error);
+  const { code, meta } = error as Error & { code?: string; meta?: unknown };
+  return [error.name, code, JSON.stringify(meta)].filter(Boolean).join(" ");
 }
