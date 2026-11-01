@@ -1,0 +1,15 @@
+# Local Postgres. Start with `pnpm db:up` only when needed, and `pnpm db:down` to free up memory.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports:
+      - "5433:5432" # 5433 so it can't clash with a Postgres installed on the machine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

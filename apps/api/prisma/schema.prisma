@@ -1,0 +1,9 @@
+// Add models here, then run `pnpm db:migrate`. Every table gets createdAt and updatedAt (standards/database.md).
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}

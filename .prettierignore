@@ -1,0 +1,10 @@
+.next
+dist
+node_modules
+pnpm-lock.yaml
+playwright-report
+test-results
+.claude/skills
+apps/web/src/components/ui
+apps/api/src/generated
+next-env.d.ts

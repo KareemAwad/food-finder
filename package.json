@@ -1,0 +1,24 @@
+{
+  "name": "food-finder",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @app/shared build && pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "pnpm -r test",
+    "e2e": "pnpm --filter web e2e",
+    "check": "pnpm --filter @app/shared build && pnpm --filter api db:generate && pnpm lint && pnpm typecheck && pnpm format:check && pnpm test",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:migrate": "pnpm --filter api db:migrate"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1"
+  },
+  "packageManager": "pnpm@12.14.0"
+}
