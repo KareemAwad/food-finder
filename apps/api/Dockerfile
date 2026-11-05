@@ -13,4 +13,4 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /app .
 USER node
-CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy && node dist/main.js"]
+CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy && node --import ./dist/instrument.js dist/main.js"]
