@@ -12,7 +12,7 @@
     "test": "pnpm -r test",
     "e2e": "pnpm --filter web e2e",
     "check": "pnpm --filter @app/shared build && pnpm --filter api db:generate && pnpm lint && pnpm typecheck && pnpm format:check && pnpm test",
-    "db:up": "docker compose up -d postgres",
+    "db:up": "[ -f apps/api/.env ] || cp apps/api/.env.example apps/api/.env; [ -f apps/web/.env.local ] || cp apps/web/.env.example apps/web/.env.local; docker compose up -d postgres",
     "db:down": "docker compose down",
     "db:migrate": "pnpm --filter api db:migrate"
   },
