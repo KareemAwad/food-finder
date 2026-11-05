@@ -30,9 +30,14 @@ jobs:
       API_URL: http://localhost:4000
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # full history, so the secret scan sees every commit
 
       # Same Node/pnpm versions as local, read from mise.toml
       - uses: jdx/mise-action@v3
+
+      - name: Scan for secrets
+        run: gitleaks git --redact
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
