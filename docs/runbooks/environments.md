@@ -56,12 +56,12 @@ Staging and production each have their own API service, database, Google key and
 
 Project → Settings → Environment Variables. Each variable can hold a different value for Preview and Production.
 
-| Variable                         | Preview                                        | Production                             |
-| -------------------------------- | ---------------------------------------------- | -------------------------------------- |
-| `API_URL`                        | `https://food-finder-api-staging.onrender.com` | `https://food-finder-api.onrender.com` |
-| `NEXT_PUBLIC_SENTRY_DSN`         | `food-finder-web` DSN                          | `food-finder-web` DSN                  |
-| `NEXT_PUBLIC_SENTRY_ENVIRONMENT` | `staging`                                      | `production`                           |
-| `SENTRY_TEST_ROUTE`              | `true` (only for the check)                    | not set                                |
+| Variable                         | Preview                                        | Production                                  |
+| -------------------------------- | ---------------------------------------------- | ------------------------------------------- |
+| `API_URL`                        | `https://food-finder-api-staging.onrender.com` | `https://food-finder-api-8nj4.onrender.com` |
+| `NEXT_PUBLIC_SENTRY_DSN`         | `food-finder-web` DSN                          | `food-finder-web` DSN                       |
+| `NEXT_PUBLIC_SENTRY_ENVIRONMENT` | `staging`                                      | `production`                                |
+| `SENTRY_TEST_ROUTE`              | `true` (only for the check)                    | not set                                     |
 
 Variables are read at build time, so redeploy after changing them.
 
