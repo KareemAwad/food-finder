@@ -23,8 +23,7 @@ Staging and production each have their own API service, database, Google key and
 
 ### 2. Neon
 
-1. Rename the branch staging uses today to `production` (it's the default branch), or keep its name and treat it as
-   production.
+1. Name the default branch `production`. It's the production database.
 2. Create a branch `staging` from it, and copy its connection string.
 3. Use the **direct** address for now, not `-pooler` (issue #21 decides that).
 

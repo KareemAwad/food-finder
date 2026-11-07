@@ -16,7 +16,8 @@ import { PrismaModule } from "./prisma/prisma.module.js";
     HealthModule,
     DebugModule,
   ],
-  // Reports unexpected errors (500s) to Sentry. Expected ones like 404 and 400 are not sent.
+  // Reports errors that aren't Nest HttpExceptions. Every HttpException is skipped, even a 503,
+  // so a failure that should page us must throw a plain Error (see issue #3).
   providers: [{ provide: APP_FILTER, useClass: SentryGlobalFilter }],
 })
 export class AppModule {}

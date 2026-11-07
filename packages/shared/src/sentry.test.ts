@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { scrubEvent } from "./sentry.js";
+import { scrubEvent, sentryDataCollection } from "./sentry.js";
 
 // A search request as Sentry would describe it, if it were allowed to attach the body.
 function searchEvent() {
@@ -34,5 +34,19 @@ describe("scrubEvent", () => {
   it("leaves events without a request alone", () => {
     const event = { message: "Startup failed" };
     expect(scrubEvent(event)).toEqual({ message: "Startup failed" });
+  });
+});
+
+describe("sentryDataCollection", () => {
+  // Exact match on purpose: loosening or misspelling any setting should fail here, not leak data.
+  it("keeps bodies, query strings, cookies, user info, IPs and local variables out of Sentry", () => {
+    expect(sentryDataCollection).toEqual({
+      httpBodies: [],
+      urlQueryParams: false,
+      cookies: false,
+      userInfo: false,
+      stackFrameVariables: false,
+      httpHeaders: { allow: ["user-agent", "content-type"] },
+    });
   });
 });
